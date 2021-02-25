@@ -25,7 +25,11 @@ async function doQuery() {
   const id = Math.floor(Math.random() * 10000).toString();
 
   let result = await query({ id: id });
-  return result["value"];
+  return {
+    statusCode: 200,
+    headers: { "Content-Type": "text/plain" },
+    body: result["value"],
+  };
 }
 
 exports.handler = async (event: any, context: any) => {
